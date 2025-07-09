@@ -1,0 +1,88 @@
+************************************* Invoked: Thu Mar 20 11:01:41 2025
+[0] Arguments: C:\Users\Sukalpita Dutta\Downloads\gpt4all-installer-win64-arm.exe
+[26] Operations sanity check succeeded.
+[86] Using metadata cache from "C:/Users/Sukalpita Dutta/AppData/Local/cache\\qt-installer-framework\\9c11e018-d3aa-3c3a-9118-829c9ab85b1c"
+[86] Found 1 cached items.
+[86] Language: en-IN
+[313] Loaded control script ":/metadata/installer-config/installer_control_qs.qs"
+[313] Using control script: ":/metadata/installer-config/installer_control_qs.qs"
+[48766] Fetching latest update information...
+[48774] Downloading 1 items to cache.
+[48774] Retrieving information from remote repositories...
+[49579] Loading component scripts...
+[70933] OverwriteTargetDirectory : Warning : You have selected an existing, non-empty directory for installation.
+Note that it will be completely wiped on uninstallation of this application.
+It is not advisable to install into this directory as installation might fail.
+Do you want to continue? Yes|No
+[77958] Loading component scripts...
+[580845] Selected components without dependencies:
+gpt4all
+[580846] Installation space required: "645.00 MB" Temporary space required: "527.37 MB" Local repository size: "0.00 bytes"
+[580848] Cache and install directories are on the same volume. Volume mount point: "C:\\" Free space available: "259.53 GB"
+[581747] backup  operation: Mkdir
+[581747] 	- arguments: C:/Users/Sukalpita Dutta/Documents/Langchain Project
+[581747] Done
+[581747] perform  operation: Mkdir
+[581747] 	- arguments: C:/Users/Sukalpita Dutta/Documents/Langchain Project
+[581748] Done
+[581748] Preparing the installation...
+[581748] Install size: 1 components
+[581750] Downloading packages...
+[581752] Downloading archive "3.10.0bin.7z.sha1" for component gpt4all.
+[582361] Downloading archive "3.10.0bin.7z" for component gpt4all.
+[590531] Downloading archive "3.10.0lib.7z.sha1" for component gpt4all.
+[591032] Downloading archive "3.10.0lib.7z" for component gpt4all.
+[591687] Downloading archive "3.10.0resources.7z.sha1" for component gpt4all.
+[592186] Downloading archive "3.10.0resources.7z" for component gpt4all.
+[642475] Downloading archive "3.10.0content.7z.sha1" for component gpt4all.
+[642974] Downloading archive "3.10.0content.7z" for component gpt4all.
+[643503] Preparing to unpack components...
+[643513] backup gpt4all concurrent operation: Extract
+[643513] 	- arguments: installer://gpt4all/3.10.0content.7z, C:/Users/Sukalpita Dutta/Documents/Langchain Project
+[643513] Started
+[643513] backup gpt4all concurrent operation: Extract
+[643513] 	- arguments: installer://gpt4all/3.10.0bin.7z, C:/Users/Sukalpita Dutta/Documents/Langchain Project
+[643513] Started
+[643513] backup gpt4all concurrent operation: Extract
+[643513] 	- arguments: installer://gpt4all/3.10.0resources.7z, C:/Users/Sukalpita Dutta/Documents/Langchain Project
+[643513] Started
+[643513] backup gpt4all concurrent operation: Extract
+[643513] 	- arguments: installer://gpt4all/3.10.0lib.7z, C:/Users/Sukalpita Dutta/Documents/Langchain Project
+[643513] Started
+[643538] Unpacking components...
+[643539] perform gpt4all concurrent operation: Extract
+[643539] 	- arguments: installer://gpt4all/3.10.0resources.7z, C:/Users/Sukalpita Dutta/Documents/Langchain Project
+[643539] Started
+[643539] perform gpt4all concurrent operation: Extract
+[643539] 	- arguments: installer://gpt4all/3.10.0bin.7z, C:/Users/Sukalpita Dutta/Documents/Langchain Project
+[643539] Started
+[643539] perform gpt4all concurrent operation: Extract
+[643539] 	- arguments: installer://gpt4all/3.10.0lib.7z, C:/Users/Sukalpita Dutta/Documents/Langchain Project
+[643539] Started
+[643541] perform gpt4all concurrent operation: Extract
+[643541] 	- arguments: installer://gpt4all/3.10.0content.7z, C:/Users/Sukalpita Dutta/Documents/Langchain Project
+[643541] Started
+[659037] Installing component gpt4all
+[659038] backup gpt4all operation: CreateShortcut
+[659038] 	- arguments: C:/Users/Sukalpita Dutta/Documents/Langchain Project/bin/chat.exe, C:\Users\Sukalpita Dutta/Desktop/GPT4All.lnk, workingDirectory=C:/Users/Sukalpita Dutta/Documents/Langchain Project/bin, iconPath=C:/Users/Sukalpita Dutta/Documents/Langchain Project/gpt4all.ico, iconId=0, description=Open GPT4All
+[659038] Done
+[659038] perform gpt4all operation: CreateShortcut
+[659038] 	- arguments: C:/Users/Sukalpita Dutta/Documents/Langchain Project/bin/chat.exe, C:\Users\Sukalpita Dutta/Desktop/GPT4All.lnk
+[659134] Done
+[659134] backup gpt4all operation: CreateShortcut
+[659134] 	- arguments: C:/Users/Sukalpita Dutta/Documents/Langchain Project/bin/chat.exe, C:\Users\Sukalpita Dutta\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code/GPT4All.lnk, workingDirectory=C:/Users/Sukalpita Dutta/Documents/Langchain Project/bin, iconPath=C:/Users/Sukalpita Dutta/Documents/Langchain Project/gpt4all.ico, iconId=0, description=Open GPT4All
+[659134] Done
+[659134] perform gpt4all operation: CreateShortcut
+[659134] 	- arguments: C:/Users/Sukalpita Dutta/Documents/Langchain Project/bin/chat.exe, C:\Users\Sukalpita Dutta\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Visual Studio Code/GPT4All.lnk
+[659166] Done
+[659166] backup gpt4all operation: License
+[659166] 	- arguments:
+[659166] Done
+[659166] perform gpt4all operation: License
+[659166] 	- arguments:
+[659168] Done
+[659175] Writing maintenance tool: "C:/Users/Sukalpita Dutta/Documents/Langchain Project/maintenancetool.exe.new"
+[659176] Writing maintenance tool.
+[659304] Wrote permissions for maintenance tool.
+[659600] Maintenance tool hard restart: false.
+[659608] Installation finished!
