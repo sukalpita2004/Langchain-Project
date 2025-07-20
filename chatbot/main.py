@@ -4,9 +4,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
-from langchain_ollama import ChatOllama
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import StrOutputParser
+from huggingface_hub import InferenceClient
 
 app = FastAPI()
 
@@ -18,29 +16,25 @@ app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), na
 # ✅ Set up template rendering
 templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
-# LLM Setup
-MODEL_NAME = "gemma:2b"
-llm = ChatOllama(model=MODEL_NAME)
+# ✅ Hugging Face Setup (replace with your token or set as env var in Render)
+HF_TOKEN = os.getenv("HF_TOKEN")  # Add this in Render's env variables
+client = InferenceClient(token=HF_TOKEN)
 
-prompt = ChatPromptTemplate.from_messages([
-    ("system", "You are a programming assistant that corrects code in any language and explains the fix."),
-    ("user", "Here is my code:\n\n{question}\n\nFix it and explain the corrections.")
-])
-chain = prompt | llm | StrOutputParser()
+# ✅ Model to use — can be changed
+HF_MODEL = "mistralai/Mistral-7B-Instruct-v0.1"
 
 class CodeInput(BaseModel):
     code: str
 
-# ✅ Home page route
 @app.get("/", response_class=HTMLResponse)
 async def serve_home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-# ✅ Code fix API
 @app.post("/fix-code")
 async def fix_code(input: CodeInput):
+    prompt = f"""You are a helpful programming assistant. Fix the following code and explain the changes:\n\n{input.code}"""
     try:
-        result = chain.invoke({"question": input.code})
-        return {"success": True, "result": result}
+        output = client.text_generation(HF_MODEL, inputs=prompt, max_new_tokens=512)
+        return {"success": True, "result": output}
     except Exception as e:
         return {"success": False, "error": str(e)}
