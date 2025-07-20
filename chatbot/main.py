@@ -1,13 +1,24 @@
-from fastapi import FastAPI, Request, Form
-from fastapi.staticfiles import StaticFiles
+import os
+from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
-from langchain_community.chat_models import ChatOllama
+from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
-# Model
+app = FastAPI()
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# ✅ Mount static directory
+app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
+
+# ✅ Set up template rendering
+templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
+
+# LLM Setup
 MODEL_NAME = "gemma:2b"
 llm = ChatOllama(model=MODEL_NAME)
 
@@ -17,21 +28,15 @@ prompt = ChatPromptTemplate.from_messages([
 ])
 chain = prompt | llm | StrOutputParser()
 
-app = FastAPI()
-
-# Mount static files
-app.mount("/static", StaticFiles(directory="chatbot/static"), name="static")
-
-# Templates
-templates = Jinja2Templates(directory="chatbot/templates")
-
 class CodeInput(BaseModel):
     code: str
 
+# ✅ Home page route
 @app.get("/", response_class=HTMLResponse)
 async def serve_home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+# ✅ Code fix API
 @app.post("/fix-code")
 async def fix_code(input: CodeInput):
     try:
