@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Langchain Code Fixer</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🛠️ Langchain Code Fixer</h1>
+        <textarea id="code" placeholder="Paste your buggy code here..."></textarea>
+        <button onclick="fixCode()">Fix Code</button>
+        <pre id="output"></pre>
+    </div>
+
+    <script>
+        async function fixCode() {
+            const code = document.getElementById("code").value;
+            const output = document.getElementById("output");
+            output.textContent = "Fixing...";
+
+            const res = await fetch("/fix-code", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ code })
+            });
+
+            const data = await res.json();
+            if (data.success) {
+                output.textContent = data.result;
+            } else {
+                output.textContent = "❌ Error: " + data.error;
+            }
+        }
+    </script>
+</body>
+</html>
