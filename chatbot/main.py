@@ -18,7 +18,7 @@ templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
 
 # ✅ Hugging Face Setup (replace with your token or set as env var in Render)
 HF_TOKEN = os.getenv("HF_TOKEN")  # Add this in Render's env variables
-client = InferenceClient(token=HF_TOKEN)
+client = InferenceClient(model=HF_MODEL, token=HF_TOKEN)
 
 # ✅ Model to use — can be changed
 HF_MODEL = "mistralai/Mistral-7B-Instruct-v0.1"
@@ -34,7 +34,7 @@ async def serve_home(request: Request):
 async def fix_code(input: CodeInput):
     prompt = f"""You are a helpful programming assistant. Fix the following code and explain the changes:\n\n{input.code}"""
     try:
-        output = client.text_generation(HF_MODEL, inputs=prompt, max_new_tokens=512)
+        output = client.text_generation(prompt=prompt, max_new_tokens=512)
         return {"success": True, "result": output}
     except Exception as e:
         return {"success": False, "error": str(e)}
